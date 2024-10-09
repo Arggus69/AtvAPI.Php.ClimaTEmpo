@@ -28,13 +28,42 @@
     $imgNight = $day['text_icon']['icon']['night'];
     $direcaoVento = $day['wind']['direction'];
     $anguloVento = $day['wind']['direction_degrees'];
-    
+    $rainProbability = $day['rain']['probability'];
+
+    $numIcons = 0;
+    $colorIcons = 'lightgray';
+
+    switch (true) {
+    case ($rainProbability < 30):
+        $numIcons = 1;
+        break;
+    case ($rainProbability >= 30 && $rainProbability < 60):
+        $numIcons = 1;
+        $colorIcons = 'blue';
+        break;
+    case ($rainProbability >= 60 && $rainProbability < 90):
+        $numIcons = 2;
+        $colorIcons = 'blue';
+        break;
+    case ($rainProbability >= 90):
+        $numIcons = 3;
+        $colorIcons = 'blue';
+        break;
+}
 ?>
 <style>
     .direcao-vento svg {
         transform: rotate(<?=$anguloVento?>deg);
         margin-right: 5px;
     }
+    .rain-icon {
+    width: <?=16 * $numIcons?>px;
+    height: 16px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2216%22 height%3D%2216%22 fill%3D%22<?=$colorIcons?>%22 class%3D%22bi bi-droplet-fill%22 viewBox%3D%220 0 16 16%22%3E%3Cpath d%3D%22M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13%22%2F%3E%3C%2Fsvg%3E');
+    background-size: 16px 16px;
+    background-repeat: repeat-x;
+    margin-right: 5px;
+}
 </style>
 <body>
     <div class="container-all">
@@ -113,7 +142,7 @@
                             <div class="rain-icon"></div>
                             <div>
                                 <?=$day['rain']['precipitation']?> mm - 
-                                <?=$day['rain']['probability']?>%
+                                <?=$rainProbability?>%
                             </div>
                         </div>
                     <div>
