@@ -39,7 +39,7 @@
 <body>
     <div class="container-all">
         <!-- Titulo -->
-        <div>
+        <div class="title-container">
             <h3>Previsão do Clima em Bombinhas - SC</h3>
         </div>
         
