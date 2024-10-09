@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsão do Tempo</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <?php
     // Efetua a busca na api
@@ -21,9 +21,6 @@
 
     $weather_data = json_decode($response, true);
     $day = $weather_data["data"][0];
-
-    $name = $day['name'];
-    $state = $day['state'];
 
     $imgDawn = $day['text_icon']['icon']['dawn'];
     $imgMorning = $day['text_icon']['icon']['morning'];
